@@ -8,10 +8,10 @@
     </head>
     <body>
         <div id="terminal">
-            <div class="output">Welcome to my portfolio terminal!</div>
-            <div class="output">Type <code>help</code> to get started.</div>
+            <div class="output" id="welcome"></div>
+            <div class="output">Type `<code>help</code>` to get started.</div>
             <form id="command-form">
-                <span>&gt; </span>
+                <span id="prompt"></span>
                 <input type="text" id="command" autocomplete="off" />
             </form>
         </div>

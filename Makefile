@@ -20,14 +20,6 @@ logs: ## Print logs
 clean: ## Clean docker environment
 	docker system prune -f
 
-.PHONY: setup
-setup: ## Install dependencies
-	npm install
-
-.PHONY: live
-live: ## Start live server
-	browser-sync start --proxy "localhost:8080" --files "src/**/*" --no-cache
-
 .PHONY: help
 help: ## Show this help message
 	@echo "Available commands:"

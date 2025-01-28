@@ -6,7 +6,9 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./src:/var/www/html
+      - ./src/public:/var/www/html
+      - ./src/php:/var/www/html/php
+      - ./src/config.json:/var/www/html/config.json
     depends_on:
       - mysql
 
@@ -23,7 +25,7 @@ services:
     image: node:16
     container_name: browser-sync
     volumes:
-      - ./src:/app
+      - ./src/public:/app  # Adjusted path for front-end assets
     working_dir: /app
     command: >
       bash -c "npm install && browser-sync start --proxy 'php-server:80' --files './src/**/*'"

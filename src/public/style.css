@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "IBM-Mono";
+    src: url("static/IBMPlexMono-Regular.ttf");
+}
+
+
+* {
+    --bg: black;
+    --fg: white;
+    --font: "IBM-Mono";
+    --font-size: 14px;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: var(--font-size);
+    padding: 20px;
+}
+#terminal {
+    max-width: 800px;
+    margin: auto;
+}
+.output {
+    margin-bottom: 10px;
+}
+#command {
+    background: var(--bg);
+    color: var(--fg);
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 0.6em;
+    font-family: var(--font);
+    font-size: var(--font-size);
+}
+
+#command-form {
+    display: flex;
+    flex-direction: row;
+}
