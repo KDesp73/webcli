@@ -15,6 +15,7 @@ class Help extends Command {
         $this->help = "Prints this message";
     }
 
+    // TODO: automate spacing
     public function run(array $tokens): bool
     {
         $output = "Available commands:<br>";

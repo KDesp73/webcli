@@ -46,10 +46,15 @@ class Cli {
             case 'help':
                 return $this->help->run($tokens);
             default:
-                echo "Command `" . $tokens[0] . "` not found. Type 'help' for a list of available commands.";
+                Cli::error("Command `" . $tokens[0] . "` not found. Type 'help' for a list of available commands.");
                 return false;
             }
         }
+    }
+
+    public static function error(string $msg): void
+    {
+        echo "<p class=\"error\">" . $msg . "</p>";
     }
 }
 ?>

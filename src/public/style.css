@@ -18,13 +18,16 @@ body {
     font-size: var(--font-size);
     padding: 20px;
 }
+
 #terminal {
     max-width: 800px;
     margin: auto;
 }
+
 .output {
     margin-bottom: 10px;
 }
+
 #command {
     background: var(--bg);
     color: var(--fg);
@@ -36,6 +39,10 @@ body {
     font-size: var(--font-size);
 }
 
+#prompt {
+    color: green;
+}
+
 #command-form {
     display: flex;
     flex-direction: row;
@@ -43,4 +50,8 @@ body {
 
 .output a {
     color: violet;
+}
+
+.error {
+    color: red;
 }

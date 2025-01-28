@@ -44,7 +44,7 @@ form.addEventListener('submit', async (e) => {
     commandInput.disabled = true;
     
     terminal.removeChild(form);
-    terminal.innerHTML += `<div class="output">${config.prompt}  ${command}</div>`;
+    terminal.innerHTML += `<div class="output"><span id="prompt">${config.prompt}</span>  ${command}</div>`;
     commandInput.value = '';
     
     try {
@@ -65,8 +65,3 @@ form.addEventListener('submit', async (e) => {
     commandInput.disabled = false;
     commandInput.focus();
 });
-
-function clear() {
-    console.log("Clear");
-    window.location.reload();
-}

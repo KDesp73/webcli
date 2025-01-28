@@ -9,18 +9,25 @@ abstract class Command {
 
     function appendFlag(Flag $flag): void
     {
-        $this->flags[$flag->name] = $flag;
+        $this->flags[$flag->getFlag()] = $flag;
     }
 
     function getFlag(?string $n) : ?Flag
     {
         if($n == null) return null;
 
-        foreach($this->flags as $name => $flag) {
-            if($flag->getFlag() == $n) return $flag;
-        }
+        return $this->flags[$n];
+    }
 
-        return null;
+    protected function help(): string {
+        $output = bold("USAGE") . "<br>";
+        $output .= "&nbsp;&nbsp;" . $this->name . " [OPTIONS]<br><br>";
+        $output .= bold("OPTIONS") . "<br>";
+        foreach($this->flags as $name => $f) {
+            $output .= "&nbsp;&nbsp;" . $name . "<br>";
+        }
+        
+        return $output;
     }
 
     /**

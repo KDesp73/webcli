@@ -12,6 +12,7 @@ class Skills extends Command {
     {
         $output = "Skills:<br>- PHP<br>- JavaScript<br>- React<br>- HTML/CSS<br>- SQL";
         echo $output;
+        return true;
     }
 
 }
