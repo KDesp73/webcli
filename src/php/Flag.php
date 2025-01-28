@@ -22,7 +22,7 @@ class Flag {
         return $this->name;
     }
 
-    public function getFlag(string $name): mixed
+    public function getFlag(): mixed
     {
         switch($this->type){
             case FlagType::Long:

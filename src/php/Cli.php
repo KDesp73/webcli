@@ -2,6 +2,7 @@
 
 require_once 'Command.php';
 
+error_reporting(E_ALL & ~E_WARNING);
 class Cli {
     private array $commands;
     public Command $help;

@@ -10,7 +10,7 @@ $cli= new Cli();
 $cli->add(new Contact());
 $cli->add(new About());
 $cli->add(new Skills());
-$cli->add(new Help());
+$cli->add(new Help()); // Must be last
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = $_POST['command'] ?? '';

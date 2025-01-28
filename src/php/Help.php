@@ -2,8 +2,6 @@
 
 
 require_once 'Command.php';
-// ini_set('display_errors', 'Off');
-// ini_set('log_errors', 'On');
 
 class Help extends Command {
     public array $commands;

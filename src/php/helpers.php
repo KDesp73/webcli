@@ -18,4 +18,11 @@ function anchor($url){
     return "<a target=\"_blank\" href=\"" . $url . "\">" . $url . "</a>";
 }
 
+function bold($str){
+    return "<b>". $str ."</b>";
+}
+function italic($str){
+    return "<i>". $str ."</i>";
+}
+
 ?>

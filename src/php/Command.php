@@ -4,7 +4,7 @@ require_once 'Flag.php';
 
 abstract class Command {
     public string $name; 
-    private array $flags;
+    public array $flags;
     public string $help;
 
     function appendFlag(Flag $flag): void
@@ -17,7 +17,7 @@ abstract class Command {
         if($n == null) return null;
 
         foreach($this->flags as $name => $flag) {
-            if($flag->getFlag($name) == $n) return $flag;
+            if($flag->getFlag() == $n) return $flag;
         }
 
         return null;
