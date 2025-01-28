@@ -48,7 +48,7 @@ form.addEventListener('submit', async (e) => {
     commandInput.value = '';
     
     try {
-        const response = await fetch('/php/command.php', {
+        const response = await fetch('/php/commands.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `command=${encodeURIComponent(command)}`

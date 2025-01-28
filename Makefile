@@ -2,7 +2,7 @@
 
 .PHONY: start
 start: ## Start the php server
-	docker-compose up -d
+	docker-compose up -d --remove-orphans
 
 .PHONY: stop
 stop: ## Stop the php server

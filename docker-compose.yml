@@ -1,36 +1,9 @@
 services:
   php-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: php:8.2-apache
     ports:
       - "8080:80"
     volumes:
       - ./src/public:/var/www/html
       - ./src/php:/var/www/html/php
       - ./src/config.json:/var/www/html/config.json
-    depends_on:
-      - mysql
-
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: testdb
-    ports:
-      - "3306:3306"
-
-  browser-sync:
-    image: node:16
-    container_name: browser-sync
-    volumes:
-      - ./src/public:/app  # Adjusted path for front-end assets
-    working_dir: /app
-    command: >
-      bash -c "npm install && browser-sync start --proxy 'php-server:80' --files './src/**/*'"
-    depends_on:
-      - php-server
-    ports:
-      - "3000:3000"  # Browser-sync UI
-      - "3001:3001"  # Browser-sync server
