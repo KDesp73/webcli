@@ -51,12 +51,17 @@ class Contact extends Command {
                 return false;
             }
 
-            if($flag->name == "email")
+            switch($flag->name){
+            case "email":
                 echo mailto($link);
-            else if($flag->name == "help"){
+                break;
+            case "help":
                 echo $this->help();
-            } else if($flag->name == "github")
+                break;
+            case "github":
                 echo anchor($link);
+                break;
+            }
         }
         return true;
     }

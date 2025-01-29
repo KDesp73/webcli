@@ -1,0 +1,51 @@
+/* ansi.css */
+
+/* Standard text colors */
+.black { color: black; }
+.red { color: red; }
+green { color: green; }
+.yellow { color: #CCCC00; }
+.blue { color: blue; }
+.magenta { color: magenta; }
+.cyan { color: cyan; }
+.white { color: white; }
+
+/* Bright text colors */
+.bright-black { color: #555555; }
+.bright-red { color: #FF5555; }
+.bright-green { color: #55FF55; }
+.bright-yellow { color: #FFFF55; }
+.bright-blue { color: #5555FF; }
+.bright-magenta { color: #FF55FF; }
+.bright-cyan { color: #55FFFF; }
+.bright-white { color: #FFFFFF; }
+
+/* Background colors */
+.bg-black { background-color: black; }
+.bg-red { background-color: red; }
+.bg-green { background-color: green; }
+.bg-yellow { background-color: #CCCC00; }
+.bg-blue { background-color: blue; }
+.bg-magenta { background-color: magenta; }
+.bg-cyan { background-color: cyan; }
+.bg-white { background-color: white; }
+
+/* Bright background colors */
+.bg-bright-black { background-color: #555555; }
+.bg-bright-red { background-color: #FF5555; }
+.bg-bright-green { background-color: #55FF55; }
+.bg-bright-yellow { background-color: #FFFF55; }
+.bg-bright-blue { background-color: #5555FF; }
+.bg-bright-magenta { background-color: #FF55FF; }
+.bg-bright-cyan { background-color: #55FFFF; }
+.bg-bright-white { background-color: #FFFFFF; }
+
+/* Text effects */
+.bold { font-weight: bold; }
+.dim { opacity: 0.6; }
+.italic { font-style: italic; }
+.underline { text-decoration: underline; }
+.blink { text-decoration: blink; }
+.reverse { filter: invert(1); }
+.hidden { visibility: hidden; }
+.strikethrough { text-decoration: line-through; }

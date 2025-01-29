@@ -25,4 +25,19 @@ function italic($str){
     return "<i>". $str ."</i>";
 }
 
+function progressBar(int $progress, int $total, int $width = 20): string {
+    if ($total <= 0) return "[ERROR: Invalid total value]";
+
+    $percentage = $progress / $total;
+    $fullBlocks = floor($width * $percentage);
+    $remainder = ($width * $percentage) - $fullBlocks; // Fractional part
+    $emptyBlocks = $width - $fullBlocks - 1; // Leave space for the partial block
+
+    // Unicode fractional blocks from ▏(1/8) to █ (full)
+    $blockChars = ["", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"];
+    $partialBlock = $blockChars[round($remainder * 8)]; // Get closest fractional block
+
+    return sprintf("%s%s%s %3d%%", str_repeat("█", $fullBlocks), $partialBlock, str_repeat("░", $emptyBlocks), round($percentage * 100));
+}
+
 ?>
