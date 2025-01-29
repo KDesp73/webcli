@@ -1,3 +1,4 @@
+DIST=dist
 .DEFAULT_GOAL := help
 
 .PHONY: start
@@ -19,6 +20,17 @@ logs: ## Print logs
 .PHONY: clean
 clean: ## Clean docker environment
 	docker system prune -f
+
+.PHONY: dist
+dist: ## Create a distribution directory
+	mkdir -p $(DIST)
+	cp -r ./src/public/* $(DIST)
+	cp -r ./src/php $(DIST)
+	cp ./src/config.json $(DIST)/config.json
+
+.PHONY: distclean
+distclean: ## Clean the distribution
+	rm -rf $(DIST)
 
 .PHONY: help
 help: ## Show this help message

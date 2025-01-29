@@ -1,4 +1,7 @@
 package-lock.json
 node_modules
+
 src/public/config.json
 src/public/php/
+
+dist
