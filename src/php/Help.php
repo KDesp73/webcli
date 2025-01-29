@@ -15,17 +15,27 @@ class Help extends Command {
         $this->help = "Prints this message";
     }
 
-    // TODO: automate spacing
     public function run(array $tokens): bool
     {
-        $output = "Available commands:<br>";
-        $output .= "&nbsp;&nbsp;" . $this->name . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $this->help . "<br>";
-        foreach ($this->commands as $name => $command){
-            if($command->include)
-                $output .= "&nbsp;&nbsp;" . $name . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $command->help . "<br>";
+        $commandFlags = array($this->name);
+        foreach ($this->commands as $name => $command) {
+            $commandFlags[] = $name;
         }
-        echo $output;
 
+        $maxLength = max(array_map('strlen', $commandFlags));
+        $gap = 4;
+
+        $output = "Available commands:<br>";
+
+        $output .= "&nbsp;&nbsp;" . str_replace(" ", "&nbsp;", str_pad($this->name, $maxLength + $gap)) . $this->help . "<br>";
+
+        foreach ($this->commands as $name => $command) {
+            if ($command->include) {
+                $output .= "&nbsp;&nbsp;" . str_replace(" ", "&nbsp;", str_pad($name, $maxLength + $gap)) . $command->help . "<br>";
+            }
+        }
+
+        echo $output;
         return true;
     }
 }
