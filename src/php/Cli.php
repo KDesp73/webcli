@@ -14,11 +14,17 @@ class Cli {
 
     public function add(Command $command): void {
         if($command->name == "help") {
-            $this->help = $command;
-            $this->help->commands = $this->commands;
             return;
         }
         $this->commands[$command->name] = $command;
+    }
+
+    public function finish(): void {
+        $command = new Help();
+        $this->help = $command;
+        $this->help->commands = $this->commands;
+        $this->commands[$command->name] = $command;
+        return;
     }
 
     public function get(string $name): ?Command

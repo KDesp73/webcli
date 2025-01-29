@@ -6,6 +6,7 @@ abstract class Command {
     public string $name; 
     public array $flags;
     public string $help;
+    public bool $include = true;
 
     function appendFlag(Flag $flag): void
     {

@@ -10,7 +10,12 @@ class Skills extends Command {
 
     public function run(array $tokens): bool
     {
-        $output = "Skills:<br>- PHP<br>- JavaScript<br>- React<br>- HTML/CSS<br>- SQL";
+        $output = "Skills:<br>";
+        $output .= "- PHP<br>";
+        $output .= "- JavaScript<br>";
+        $output .= "- C<br>";
+        $output .= "- HTML/CSS<br>";
+        $output .= "- Java";
         echo $output;
         return true;
     }

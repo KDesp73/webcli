@@ -14,7 +14,7 @@ class About extends Command {
     public function run(array $tokens): bool
     {
         if(sizeof($tokens) <= 1){
-            $output = "I am a web developer passionate about creating interactive and user-friendly websites.";
+            $output = "I am a software engineer passionate about creating interactive and user-friendly applications.";
             echo $output;
         } else {
             $flag = $this->getFlag($tokens[1]);

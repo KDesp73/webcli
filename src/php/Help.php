@@ -21,7 +21,8 @@ class Help extends Command {
         $output = "Available commands:<br>";
         $output .= "&nbsp;&nbsp;" . $this->name . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $this->help . "<br>";
         foreach ($this->commands as $name => $command){
-            $output .= "&nbsp;&nbsp;" . $name . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $command->help . "<br>";
+            if($command->include)
+                $output .= "&nbsp;&nbsp;" . $name . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $command->help . "<br>";
         }
         echo $output;
 
