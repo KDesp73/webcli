@@ -2,11 +2,17 @@
 
 require_once 'Flag.php';
 
-abstract class Command {
+class Command {
     public string $name; 
     public array $flags;
     public string $help;
     public bool $include = true;
+
+    public function __construct(string $name, string $help)
+    {
+        $this->name = $name;
+        $this->help = $help;
+    }
 
     function appendFlag(Flag $flag): void
     {
@@ -34,7 +40,10 @@ abstract class Command {
     /**
      * @param array<int,mixed> $tokens
      */
-    abstract function run(array $tokens): bool;
+    function run(array $tokens): bool
+    {
+        return true;
+    }
 }
 
 ?>

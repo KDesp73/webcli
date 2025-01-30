@@ -37,6 +37,17 @@ async function init() {
 
 init();
 
+function executeCommand(command) {
+    switch(command) {
+        case "clear":
+            terminal.innerHTML = "";
+            break;
+        default:
+            return false;
+    }
+    return true;
+}
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const command = commandInput.value.trim();
@@ -47,16 +58,19 @@ form.addEventListener('submit', async (e) => {
     terminal.innerHTML += `<div class="output"><span id="prompt">${config.prompt}</span>  ${command}</div>`;
     commandInput.value = '';
     
-    try {
-        const response = await fetch('/php/commands.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `command=${encodeURIComponent(command)}`
-        });
-        const result = await response.text();
-        terminal.innerHTML += `<div class="output">${result}</div>`;
-    } catch (_error) {
-        terminal.innerHTML += `<div class="output">Error: Unable to process the command.</div>`;
+    if(!executeCommand(command)){
+        try {
+            const response = await fetch('/php/commands.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `command=${encodeURIComponent(command)}`
+            });
+            const result = await response.text();
+
+            terminal.innerHTML += `<div class="output">${result}</div>`;
+        } catch (_error) {
+            terminal.innerHTML += `<div class="output">Error: Unable to process the command.</div>`;
+        }
     }
     
     terminal.scrollTop = terminal.scrollHeight;

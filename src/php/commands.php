@@ -14,6 +14,7 @@ $cli->add(new About());
 $cli->add(new Skills());
 $cli->add(new Ping());
 $cli->add(new Amogus());
+$cli->add(new Command("clear", "Clear the terminal"));
 $cli->finish();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
