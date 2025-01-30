@@ -38,7 +38,8 @@ async function init() {
 init();
 
 function executeCommand(command) {
-    switch(command) {
+    const tokens = command.split(" ");
+    switch(tokens[0]) {
         case "clear":
             terminal.innerHTML = "";
             break;

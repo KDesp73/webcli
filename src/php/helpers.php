@@ -11,12 +11,14 @@ function parseJson($file) {
 }
 
 function mailto($email){
-    return "<a href=\"mailto:" . $email . "\">" . $email . "</a>";
+    return "<a tabindex=\"-1\" href=\"mailto:" . $email . "\">" . $email . "</a>";
 }
 
-function anchor($url){
-    return "<a target=\"_blank\" href=\"" . $url . "\">" . $url . "</a>";
+function anchor(string $url, string $name = null): string {
+    $name = $name ?? $url;
+    return "<a tabindex=\"-1\" target=\"_blank\" href=\"" . $url . "\">" . $name . "</a>";
 }
+
 
 function bold($str){
     return "<b>". $str ."</b>";
