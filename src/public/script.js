@@ -1,6 +1,7 @@
 const form = document.getElementById('command-form');
 const commandInput = document.getElementById('command');
 const terminal = document.getElementById('terminal');
+const welcome = document.getElementById('welcome');
 
 async function parseJson(url) {
     try {
@@ -25,10 +26,10 @@ async function init() {
     }
 
     const prompt = document.getElementById('prompt');
-    const welcome = document.getElementById('welcome');
+    const welcomeMessage = document.getElementById('welcome-message');
     
-    if (welcome && config.welcome) {
-        welcome.innerHTML += config.welcome;
+    if (welcomeMessage && config.welcome) {
+        welcomeMessage.innerHTML += config.welcome;
     }
     if (prompt && config.prompt) {
         prompt.innerHTML += config.prompt;
@@ -43,6 +44,11 @@ function executeCommand(command) {
         case "clear":
             terminal.innerHTML = "";
             break;
+        case "welcome": {
+            terminal.innerHTML = "";
+            terminal.appendChild(welcome);
+            break;
+        }
         default:
             return false;
     }

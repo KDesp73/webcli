@@ -9,8 +9,18 @@
     </head>
     <body>
         <div id="terminal">
-            <div class="output" id="welcome"></div>
-            <div class="output">Type `<code>help</code>` to get started.</div>
+            <div id="welcome">
+                <code><pre>
+    __ __ ____               __________
+   / //_// __ \___  ________/__  /__  /
+  / ,&lt;  / / / / _ \/ ___/ __ \/ / /_ &lt; 
+ / /| |/ /_/ /  __(__  ) /_/ / /___/ / 
+/_/ |_/_____/\___/____/ .___/_//____/  
+                     /_/                
+                </pre></code>
+                <div class="output" id="welcome-message"></div>
+                <div class="output">Type `<code>help</code>` to get started.</div>
+            </div>
             <form id="command-form">
                 <span id="prompt"></span>
                 <input type="text" id="command" autocomplete="off" />

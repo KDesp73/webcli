@@ -76,6 +76,7 @@ class Projects extends Command {
                 );
                 $this->projects[] = $project;
             }
+            sort($this->projects);
         } else {
             echo "Error loading projects data.\n";
         }

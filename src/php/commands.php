@@ -19,6 +19,7 @@ $cli->add(new Ping());
 $cli->add(new Amogus());
 $cli->add(new Links());
 $cli->add(new Command("clear", "Clear the terminal"));
+$cli->add(new Command("welcome", "Print the welcome message"));
 $cli->finish();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
