@@ -10,11 +10,13 @@ enum FlagType
 class Flag {
     private string $name;
     public FlagType $type;
+    public bool $acceptsValue;
 
-    public function __construct(string $name, FlagType $type)
+    public function __construct(string $name, FlagType $type, bool $acceptsValue = false)
     {
         $this->name = $name;
         $this->type = $type;
+        $this->acceptsValue = $acceptsValue;
     }
 
     public function __get(string $name): mixed

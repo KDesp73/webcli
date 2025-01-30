@@ -31,7 +31,10 @@ class Command {
         $output .= "&nbsp;&nbsp;" . $this->name . " [OPTIONS]<br><br>";
         $output .= bold("OPTIONS") . "<br>";
         foreach($this->flags as $name => $f) {
-            $output .= "&nbsp;&nbsp;" . $name . "<br>";
+            if($f->acceptsValue)
+                $output .= "&nbsp;&nbsp;" . $name . " &lt;VALUE&gt;<br>";
+            else
+                $output .= "&nbsp;&nbsp;" . $name . "<br>";
         }
         
         return $output;

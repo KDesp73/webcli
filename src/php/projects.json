@@ -1,0 +1,130 @@
+{
+    "projects": [
+        {
+            "name": "ksh",
+            "language": "C",
+            "license": "MIT",
+            "description": "My own linux shell written in pure C",
+            "link": "https://github.com/KDesp73/ksh"
+        },
+        {
+            "name": "DataBridge",
+            "language": "Java",
+            "license": "MIT",
+            "description": "A Java library for managing database connections and transactions ",
+            "link": "https://github.com/KDesp73/DataBridge"
+        },
+        {
+            "name": "changelogger",
+            "description": "A cli tool to help you keep a changelog in all your projects ",
+            "link": "https://github.com/KDesp73/changelogger",
+            "license": "MIT",
+            "language": "C"
+        },
+        {
+            "name": "Kittify",
+            "description": "An Mp3 Player for Linux and Windows written in Java with scraping capabilities ",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/Kittify",
+            "language": "Java"
+        },
+        {
+            "name": "nn",
+            "description": "Neural Network library",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/nn",
+            "language": "C"
+        },
+        {
+            "name": "nni",
+            "description": "Neural Network training interface for the nn library",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/nni",
+            "language": "C"
+        },
+        {
+            "name": "PawrfectMatch",
+            "description": "An android app to help you find your furry friend and more! ",
+            "link": "https://github.com/KDesp73/PawrfectMatch",
+            "language": "Kotlin",
+            "license": "MIT"
+        },
+        {
+            "name": "car-manager",
+            "description": "A car dealership management system ",
+            "license": "Apache 2.0",
+            "link": "https://github.com/KDesp73/car-manager",
+            "language": "Java"
+        },
+        {
+            "name": "cchat",
+            "license": "GPL-3.0",
+            "description": "A simple chat service for the terminal written in C ",
+            "link": "https://github.com/KDesp73/cchat",
+            "language": "C"
+        },
+        {
+            "name": "gotalk",
+            "description": "A REST API written in Go for handling comments, threads and users ",
+            "language": "Go",
+            "license": "MIT",
+            "link": "http://github.com/KDesp73/gotalk"
+        },
+        {
+            "name": "kdscript",
+            "description": "An interpreted scripting language inspired by the syntax of python, bash and go",
+            "license": "GPL-3.0",
+            "language": "Python",
+            "link": "https://github.com/KDesp73/kdscript"
+        },
+        {
+            "name": "project-starter.nvim",
+            "description": "A neovim plugin for creating template project structures for various languages ",
+            "license": "The Unlicense",
+            "language": "Lua",
+            "link": "https://github.com/KDesp73/project-starter.nvim"
+        },
+        {
+            "name": "sshportfolio",
+            "description": "My TUI portfolio that can be served through SSH ",
+            "language": "Go",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/sshportfolio"
+        },
+        {
+            "name": "tbg-engine",
+            "description": "An easy to use text based game engine",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/tbg-engine",
+            "language": "C"
+        },
+        {
+            "name": "version",
+            "description": "Small bash script to update your project's version using only one command",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/version",
+            "language": "Bash"
+        },
+        {
+            "name": "weather-station",
+            "description": "An esp32 based weather station that measures various environmental values",
+            "license": "None",
+            "link": "None",
+            "language": "C++"
+        },
+        {
+            "name": "webc",
+            "description": "Write and deploy websites using the C Programming Language.",
+            "license": "MIT",
+            "link": "https://github.com/KDesp73/webc",
+            "language": "C"
+        },
+        {
+            "name": "dotman",
+            "description": "A lightweight bash library to manage your dotfiles",
+            "license": "MIT",
+            "language": "Bash",
+            "link": "https://github.com/KDesp73/dotman"
+        }
+    ]
+}

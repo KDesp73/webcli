@@ -7,9 +7,11 @@ require_once 'Skills.php';
 require_once 'Ping.php';
 require_once 'Amogus.php';
 require_once 'Links.php';
+require_once 'Projects.php';
 require_once 'Cli.php';
 
 $cli= new Cli();
+$cli->add(new Projects());
 $cli->add(new Contact());
 $cli->add(new About());
 $cli->add(new Skills());
