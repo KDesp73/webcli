@@ -11,8 +11,7 @@ class Help extends Command {
      */
     public function __construct()
     {
-        $this->name = "help";
-        $this->help = "Prints this message";
+        parent::__construct("help", "Prints this message");
     }
 
     public function run(array $tokens): bool

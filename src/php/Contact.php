@@ -7,8 +7,7 @@ require_once 'helpers.php';
 class Contact extends Command {
     public function __construct()
     {
-        $this->name = "contact";
-        $this->help = "Reach out to me";
+        parent::__construct("contact", "Reach out to me");
 
         $this->appendFlag(new Flag("email" , FlagType::Long));
         $this->appendFlag(new Flag("github", FlagType::Long));

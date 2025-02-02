@@ -5,8 +5,7 @@ require_once 'Command.php';
 class Amogus extends Command {
     public function __construct() 
     {
-        $this->name = "amogus";
-        $this->help = "Surprise";
+        parent::__construct("amogus", "Surprise");
         $this->include = false;
     }
 

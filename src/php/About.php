@@ -4,8 +4,7 @@ require_once 'Command.php';
 class About extends Command {
     public function __construct()
     {
-        $this->name = "about";
-        $this->help = "Learn things about me";
+        parent::__construct("about", "Learn things about me");
 
         $this->appendFlag(new Flag("help", FlagType::Long));
         $this->appendFlag(new Flag("help", FlagType::Short));

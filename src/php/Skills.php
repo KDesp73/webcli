@@ -8,8 +8,7 @@ class Skills extends Command {
     private array $skills;
     public function __construct()
     {
-        $this->name = "skills";
-        $this->help = "Check what I can do";
+        parent::__construct("skills", "Check what I can do");
 
         $this->appendFlag(new Flag("help", FlagType::Short));
         $this->appendFlag(new Flag("help", FlagType::Long));
