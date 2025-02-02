@@ -14,12 +14,8 @@ class Skills extends Command {
         $this->appendFlag(new Flag("help", FlagType::Long));
         $this->appendFlag(new Flag("json", FlagType::Long));
 
-        $this->skills["C"] = 90;
-        $this->skills["Java"] = 80;
-        $this->skills["Go"] = 60;
-        $this->skills["HTML/CSS"] = 70;
-        $this->skills["JavaScript"] = 60;
-        $this->skills["PHP"] = 60;
+        $jsonData = file_get_contents('./skills.json');
+        $this->skills = json_decode($jsonData, true);
     }
 
     private function defaultResponse(): void {
