@@ -3,8 +3,10 @@ services:
     image: php:8.2-apache
     ports:
       - "8000:80"
-      - "8080:80"
     volumes:
       - ./src/public:/var/www/html
       - ./src/php:/var/www/html/php
       - ./src/config.json:/var/www/html/config.json
+
+    entrypoint: 
+      /bin/bash -c "chown -R www-data:www-data /var/www/html && exec apache2-foreground"

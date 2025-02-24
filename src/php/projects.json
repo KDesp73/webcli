@@ -125,6 +125,13 @@
             "license": "MIT",
             "language": "Bash",
             "link": "https://github.com/KDesp73/dotman"
+        },
+        {
+            "name": "eudi-login",
+            "language": "JavaScript",
+            "license": "-",
+            "description": "A login service and SDK that leverages the EUDI Wallet functionality",
+            "link": "https://github.com/DMG-TechLabs/eudi-login"
         }
     ]
 }

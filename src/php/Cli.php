@@ -38,12 +38,82 @@ class Cli {
 
         return $c;
     }
+    /**
+     * @return void
+     */
+    private function tokenize(string $input): array
+    {
+        $tokens = [];
+        $length = strlen($input);
+        $i = 0;
+
+        while ($i < $length) {
+            // Skip whitespace
+            while ($i < $length && ctype_space($input[$i])) {
+                $i++;
+            }
+
+            if ($i >= $length) break;
+
+            $token = '';
+
+            // Handle quoted strings
+            if ($input[$i] === '"' || $input[$i] === "'") {
+                $quote = $input[$i++];
+                while ($i < $length && $input[$i] !== $quote) {
+                    $token .= $input[$i++];
+                }
+                if ($i < $length) $i++; // Skip closing quote
+                $tokens[] = $token;
+                continue;
+            }
+
+            // Handle tokens and key=value format
+            $assign = false;
+            while ($i < $length && !ctype_space($input[$i])) {
+                if ($input[$i] === '=') {
+                    // Store key
+                    if ($token !== '') {
+                        $tokens[] = $token;
+                    }
+                    $token = ''; // Reset for value
+                    $i++; // Skip '='
+
+                    // Handle quoted value after `=`
+                    if ($i < $length && ($input[$i] === '"' || $input[$i] === "'")) {
+                        $quote = $input[$i++];
+                        while ($i < $length && $input[$i] !== $quote) {
+                            $token .= $input[$i++];
+                        }
+                        if ($i < $length) $i++; // Skip closing quote
+                    } else {
+                        // Handle unquoted values
+                        while ($i < $length && !ctype_space($input[$i])) {
+                            $token .= $input[$i++];
+                        }
+                    }
+                    $tokens[] = $token;
+                    $assign = true;
+                    continue; // Prevent re-adding the value
+                }
+                $token .= $input[$i++];
+            }
+
+            if (!$assign && $token !== '') {
+                $tokens[] = $token;
+            }
+        }
+
+        return $tokens;
+    }
 
     public function execute(string $input): bool
     {
-        $tokens = explode(' ', $input);
+        if($input == null || strlen($input) == 0) return false;
+        $tokens = $this->tokenize($input);
+        if(sizeof($tokens) == 0) return false;
         $command = $this->get($tokens[0]);
-        
+
         if($command != null) {
             return $command->run($tokens);
         } else {
