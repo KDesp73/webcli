@@ -11,6 +11,7 @@ require_once 'Projects.php';
 require_once 'Tokens.php';
 require_once 'Cli.php';
 require_once 'Todo.php';
+require_once 'Exit.php';
 
 $cli= new Cli();
 $cli->add(new Projects());
@@ -22,6 +23,7 @@ $cli->add(new Amogus());
 $cli->add(new Links());
 $cli->add(new Tokens());
 $cli->add(new Todo());
+$cli->add(new ExitC());
 $cli->add(new Command("clear", "Clear the terminal"));
 $cli->add(new Command("welcome", "Print the welcome message"));
 $cli->finish();
