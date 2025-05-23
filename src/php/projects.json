@@ -139,6 +139,13 @@
             "license": "MIT",
             "description": "artc is a command-line tool for generating colorful, animated abstract artwork from Lua scripts",
             "link": "https://github.com/KDesp73/artc"
+        },
+        {
+            "name": "castor",
+            "language": "C",
+            "license": "MIT",
+            "description": "A lightweight 3D raycasting engine written in C using SDL",
+            "link": "https://github.com/KDesp73/castor"
         }
     ]
 }
