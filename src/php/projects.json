@@ -132,6 +132,13 @@
             "license": "-",
             "description": "A login service and SDK that leverages the EUDI Wallet functionality",
             "link": "https://github.com/DMG-TechLabs/eudi-login"
+        },
+        {
+            "name": "artc",
+            "language": "C",
+            "license": "MIT",
+            "description": "artc is a command-line tool for generating colorful, animated abstract artwork from Lua scripts",
+            "link": "https://github.com/KDesp73/artc"
         }
     ]
 }

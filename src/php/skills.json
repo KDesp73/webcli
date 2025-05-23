@@ -3,7 +3,8 @@
    "Java": 80,
    "Go": 60,
    "Python": 70,
-   "HTML/CSS": 70,
    "JavaScript": 80,
-   "PHP": 60
+   "PHP": 65,
+   "Lua": 60,
+   "Zig": 50,
 }
