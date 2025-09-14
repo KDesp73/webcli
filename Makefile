@@ -3,23 +3,23 @@ DIST=dist
 
 .PHONY: start
 start: ## Start the php server
-	docker-compose up -d --remove-orphans
+	sudo docker-compose up -d --remove-orphans
 
 .PHONY: stop
 stop: ## Stop the php server
-	docker-compose down
+	sudo docker-compose down
 
 .PHONY: rebuild
 rebuild: ## Rebuild docker image
-	docker-compose build
+	sudo docker-compose build
 	
 .PHONY: logs
 logs: ## Print logs
-	docker-compose logs -f
+	sudo docker-compose logs -f
 
 .PHONY: clean
 clean: ## Clean docker environment
-	docker system prune -f
+	sudo docker system prune -f
 
 .PHONY: dist
 dist: ## Create a distribution directory

@@ -121,9 +121,9 @@
         },
         {
             "name": "dotman",
-            "description": "A lightweight bash library to manage your dotfiles",
+            "description": "A cli tool to manage your dotfiles",
             "license": "MIT",
-            "language": "Bash",
+            "language": "Zig",
             "link": "https://github.com/KDesp73/dotman"
         },
         {
