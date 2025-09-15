@@ -5,6 +5,11 @@
         "content": "https://kdesp73.github.io/Docs/"
     },
     {
+        "name": "artc",
+        "type": "link",
+        "content": "https://artc-editor.vercel.app/"
+    },
+    {
         "name": "img",
         "type": "image",
         "content": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F1212693%2Fpexels-photo-1212693.jpeg%3Fcs%3Dsrgb%26dl%3Dpexels-katie-burandt-1212693.jpg%26fm%3Djpg&f=1&nofb=1&ipt=7204dacfd8d816b2374bda8c99d7df12ba454ed12e9fddb199d98aab91745ede"
