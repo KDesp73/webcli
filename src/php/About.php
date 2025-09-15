@@ -1,5 +1,6 @@
 <?php 
 require_once 'Command.php';
+require_once 'Metadata.php';
 
 class About extends Command {
     public function __construct()
@@ -10,7 +11,7 @@ class About extends Command {
         $this->appendFlag(new Flag("help", FlagType::Short));
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
         if(sizeof($tokens) <= 1){
             $output = "I am a software engineer passionate about creating interactive and user-friendly applications.";
@@ -18,8 +19,7 @@ class About extends Command {
         } else {
             $flag = $this->getFlag($tokens[1]);
             if($flag == null) {
-                Cli::error("Invalid flag `" . $tokens[1] . "`");
-                return false;
+                return Cli::error("Invalid flag `" . $tokens[1] . "`");
             }
 
             if($flag->name == "help"){
@@ -28,7 +28,7 @@ class About extends Command {
         }
 
 
-        return true;
+        return Metadata::success();
     }
 
 }

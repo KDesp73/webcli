@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Command.php';
+require_once 'Metadata.php';
 
 class Amogus extends Command {
     public function __construct() 
@@ -9,10 +10,10 @@ class Amogus extends Command {
         $this->include = false;
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
         echo "ඞ";
-        return true;
+        return Metadata::success();
     }
     
 }

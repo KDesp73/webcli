@@ -2,6 +2,7 @@
 
 require_once 'Flag.php';
 require_once 'Command.php';
+require_once 'Metadata.php';
 require_once 'helpers.php';
 
 enum ResourceType
@@ -63,39 +64,17 @@ class Open extends Command {
         $this->resources[$name] = new Resource($name, $type, $content);
     }
 
-    private function openResource(Resource $resource): bool
+    public function run(array $tokens): Metadata
     {
-        switch($resource->type) {
-        case ResourceType::Image:
-            println(img($resource->content, $resource->name));
-            return true;
-        case ResourceType::Link:
-            Cli::note("TODO: Open link in new tab");
-            return true;
-        case ResourceType::File:
-            Cli::note("TODO: Open file in new tab");
-            return true;
-        default:
-            Cli::error("Unhandled resource type");
-            break;
-        }
-
-        return false;
-    }
-
-    public function run(array $tokens): bool
-    {
-        if($tokens[0] != $this->name) return false;
+        if($tokens[0] != $this->name) return Metadata::failure("Invalid command");;
 
         if(count($tokens) <= 1){
-            Cli::error("open requires an argument");
-            return false;
+            return Cli::error("open requires an argument");
         } else {
             $flag = $this->getFlag($tokens[1]);
 
             if($flag == null) {
-                Cli::error("Invalid flag `" . $tokens[1] . "`");
-                return false;
+                return Cli::error("Invalid flag `" . $tokens[1] . "`");
             }
 
             switch($flag->name){
@@ -111,22 +90,29 @@ class Open extends Command {
 
             case "name":
                 if(count($tokens) < 3){
-                    Cli::error("Provide a name for the resource");
-                    return false;
+                    return Cli::error("Provide a name for the resource");
                 }
 
                 $value = $tokens[2];
                 $resource = $this->resources[$value] ?? null;
                 if($resource == null) {
-                    Cli::error("No resource found for `" . $value . "`");
-                    return false;
+                    return Cli::error("No resource found for `" . $value . "`");
                 }
-                $this->openResource($resource);
+                switch($resource->type) {
+                case ResourceType::Image:
+                    println(img($resource->content, $resource->name));
+                    return Metadata::success();
+                case ResourceType::Link:
+                case ResourceType::File:
+                    return Metadata::success($resource->content);
+                default:
+                    return Cli::error("Unhandled resource type");
+                }
                 break;
             }
         }
 
-        return true;
+        return Metadata::failure("UNREACHABLE");
     }
 }
 

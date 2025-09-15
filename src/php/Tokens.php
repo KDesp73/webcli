@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Command.php';
+require_once 'Metadata.php';
 
 class Tokens extends Command {
     public function __construct()
@@ -9,16 +10,16 @@ class Tokens extends Command {
         $this->include = false;
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
-        if(sizeof($tokens) <= 1) return false;
+        if(sizeof($tokens) <= 1) return Metadata::failure("Provide tokens");
 
         foreach($tokens as $i => $token){
             if($i == 0) continue;
             echo $token . "<br>";
         }
 
-        return true;
+        return Metadata::success();
     }
 }
 

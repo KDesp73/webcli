@@ -2,6 +2,7 @@
 
 require_once 'Flag.php';
 require_once 'Command.php';
+require_once 'Metadata.php';
 require_once 'helpers.php';
 
 class ExitC extends Command {
@@ -14,13 +15,11 @@ class ExitC extends Command {
     }
 
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
-        if($tokens[0] != $this->name) return false;
-
         echo "Are you sure? Press Ctrl+W to confirm.";
 
-        return true;
+        return Metadata::success();
     }
 }
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Command.php';
+require_once 'Metadata.php';
 require_once 'Flag.php';
 require_once 'helpers.php';
 
@@ -22,7 +23,7 @@ class Project {
 
     private function printInBox(string $str, int $width): string
     {
-        return "│ " . strpad($str, $width + 8) . " │<br>";
+        return "│ " . strpad($str, $width) . " │<br>";
     }
     public function view(): string
     {
@@ -102,18 +103,16 @@ class Projects extends Command {
         });
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
-        if($tokens[0] != $this->name) return false;
         if(sizeof($tokens) <= 1) {
             $this->view($this->projects);
-            return true;
+            return Metadata::success();
         }
 
         $flag = $this->getFlag($tokens[1]);
         if($flag == null){
-            Cli::error("Invalid flag `" . $tokens[1] . "`");
-            return false;
+            return Cli::error("Invalid flag `" . $tokens[1] . "`");
         }
 
         switch($flag->name) {
@@ -122,26 +121,21 @@ class Projects extends Command {
             break;
         case "name":
             if(sizeof($tokens) < 3) {
-                Cli::error("--name requires a value");
-                return false;
+                return Cli::error("--name requires a value");
             }
             $this->view($this->filterName($tokens[2]));
             break;
         case "lang":
             if(sizeof($tokens) < 3) {
-                Cli::error("--lang requires a value");
-                return false;
+                return Cli::error("--lang requires a value");
             }
             $this->view($this->filterLang($tokens[2]));
             break;
         default:
-            Cli::error("Invalid flag `" . $tokens[1] . "`");
-            return false;
+            return Cli::error("Invalid flag `" . $tokens[1] . "`");
         }
 
-        return true;
-
-        return true;
+        return Metadata::success();
     }
 }
 

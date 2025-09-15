@@ -2,6 +2,7 @@
 
 require_once 'Flag.php';
 require_once 'Command.php';
+require_once 'Metadata.php';
 require_once 'helpers.php';
 
 class Contact extends Command {
@@ -28,10 +29,8 @@ class Contact extends Command {
         return $output;
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
-        if($tokens[0] != $this->name) return false;
-
         $config = parseJson("../config.json");
         if(!$config) {
             Cli::error("Could not parse config.json");
@@ -46,8 +45,7 @@ class Contact extends Command {
             $link = $config[$flag->name];
 
             if($flag == null) {
-                Cli::error("Invalid flag `" . $tokens[1] . "`");
-                return false;
+                return Cli::error("Invalid flag `" . $tokens[1] . "`");
             }
 
             switch($flag->name){
@@ -62,7 +60,7 @@ class Contact extends Command {
                 break;
             }
         }
-        return true;
+        return Metadata::success();
     }
 
 }

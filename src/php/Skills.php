@@ -1,5 +1,6 @@
 <?php 
 require_once 'Command.php';
+require_once 'Metadata.php';
 require_once 'Flag.php';
 require_once 'helpers.php';
 require_once 'ansi.php';
@@ -31,18 +32,17 @@ class Skills extends Command {
     private function toJson(): string {
         return json_encode($this->skills, JSON_PRETTY_PRINT);
     }
-    public function run(array $tokens): bool
+
+    public function run(array $tokens): Metadata 
     {
-        if($tokens[0] != $this->name) return false;
         if(sizeof($tokens) <= 1) {
             $this->defaultResponse();
-            return true;
+            return Metadata::success();
         }
 
         $flag = $this->getFlag($tokens[1]);
         if($flag == null){
-            Cli::error("Invalid flag `" . $tokens[1] . "`");
-            return false;
+            return Cli::error("Invalid flag `" . $tokens[1] . "`");
         }
 
         switch($flag->name) {
@@ -53,11 +53,10 @@ class Skills extends Command {
             echo $this->toJson();
             break;
         default:
-            Cli::error("Invalid flag `" . $tokens[1] . "`");
-            return false;
+            return Cli::error("Invalid flag `" . $tokens[1] . "`");
         }
 
-        return true;
+        return Metadata::success();
     }
 
 }

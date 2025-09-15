@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Command.php';
+require_once 'Metadata.php';
 require_once 'Flag.php';
 require_once 'helpers.php';
 
@@ -12,12 +13,13 @@ class Links extends Command {
         parent::__construct("links", "Print useful links");
         $this->include = false;
 
+        // TODO: Use resources.json
         $this->links["Docs"] = "https://kdesp73.github.io/Docs/";
         $this->links["DataBridge Docs"] = "https://kdesp73.github.io/DataBridge";
         $this->links["iee-api"] = "https://iee-api-nine.vercel.app/";
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata 
     {
         $output = "";
         foreach($this->links as $title => $link) {
@@ -25,7 +27,7 @@ class Links extends Command {
         }
         echo $output;
         
-        return true;
+        return Metadata::success();
     }
 }
 

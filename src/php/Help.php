@@ -14,7 +14,7 @@ class Help extends Command {
         parent::__construct("help", "Prints this message");
     }
 
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
         $commandFlags = array($this->name);
         foreach ($this->commands as $name => $command) {
@@ -35,7 +35,7 @@ class Help extends Command {
         }
 
         echo $output;
-        return true;
+        return Metadata::success();
     }
 }
 

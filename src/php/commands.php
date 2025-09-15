@@ -34,16 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = $_POST['command'] ?? '';
 
     ob_start();
-    $cli->execute($input);
+    $metadata = $cli->execute($input);
     $stdout = ob_get_clean();
 
     // Build the JSON object
-    $data = [
+    $data = array_merge([
         'stdout' => $stdout,
-        'status' => 'ok',
         'command' => $input,
         'timestamp' => time()
-    ];
+    ], $metadata->toArray());
 
     header('Content-Type: application/json');
     echo json_encode($data);

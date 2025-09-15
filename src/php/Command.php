@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Flag.php';
+require_once 'Metadata.php';
 
 class Command {
     public string $name; 
@@ -43,9 +44,9 @@ class Command {
     /**
      * @param array<int,mixed> $tokens
      */
-    function run(array $tokens): bool
+    function run(array $tokens): Metadata
     {
-        return true;
+        return Metadata::success();
     }
 }
 

@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Command.php';
+require_once 'Metadata.php';
 
 error_reporting(E_ALL & ~E_WARNING);
 class Cli {
@@ -107,9 +108,9 @@ class Cli {
         return $tokens;
     }
 
-    public function execute(string $input): bool
+    public function execute(string $input): Metadata
     {
-        if($input == null || strlen($input) == 0) return false;
+        if($input == null || strlen($input) == 0) return null;
         $tokens = $this->tokenize($input);
         if(sizeof($tokens) == 0) return false;
         $command = $this->get($tokens[0]);
@@ -122,15 +123,16 @@ class Cli {
             case 'help':
                 return $this->help->run($tokens);
             default:
-                Cli::error("Command `" . $tokens[0] . "` not found. Type 'help' for a list of available commands.");
-                return false;
+                return Cli::error("Command `" . $tokens[0] . "` not found. Type 'help' for a list of available commands.");
             }
         }
     }
 
-    public static function error(string $msg): void
+    public static function error(string $msg): Metadata
     {
         echo "<p class=\"error\">" . $msg . "</p>";
+
+        return Metadata::failure($msg);
     }
 
     public static function note(string $msg): void

@@ -76,6 +76,11 @@ form.addEventListener('submit', async (e) => {
       const stdout = body.stdout || '';
 
       terminal.innerHTML += `<div class="output">${stdout}</div>`;
+
+      // Metadata handling
+      if(body.link !== '') {
+        window.open(body.link, "_blank");
+      }
     } catch (_error) {
       terminal.innerHTML += `<div class="output">Error: Unable to process the command.</div>`;
     }

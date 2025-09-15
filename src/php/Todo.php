@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'Command.php';
+require_once 'Metadata.php';
 
 class Task {
     private int $id;
@@ -75,7 +76,7 @@ class Todo extends Command {
     
     }
     
-    public function run(array $tokens): bool
+    public function run(array $tokens): Metadata
     {
         $tokensLen = sizeof($tokens);
         if($tokensLen <= 1) {
@@ -85,8 +86,7 @@ class Todo extends Command {
 
         $flag = $this->getFlag($tokens[1]);
         if($flag == null){
-            Cli::error("Invalid flag `" . $tokens[1] . "`");
-            return false;
+            return Cli::error("Invalid flag `" . $tokens[1] . "`");
         }
 
         $db = new SQLite3('./data/todo.db');
@@ -99,8 +99,8 @@ class Todo extends Command {
 
         case "add":
             if ($tokensLen <= 2) {
-                Cli::error("--add requires an argument");
-                return false;
+                $db->close();
+                return Cli::error("--add requires an argument");
             }
 
             $index = $tokens[2];
@@ -112,7 +112,8 @@ class Todo extends Command {
                 print_r("Task successfully added.\n");
                 $this->loadTasks();
             } else {
-                Cli::error("Failed to add task.");
+                $db->close();
+                return Cli::error("Failed to add task.");
             }
 
             $db->close();
@@ -120,8 +121,8 @@ class Todo extends Command {
 
         case "complete":
             if ($tokensLen <= 2) {
-                Cli::error("--complete requires an argument");
-                return false;
+                $db->close();
+                return Cli::error("--complete requires an argument");
             }
 
             $index = $tokens[2];
@@ -137,7 +138,8 @@ class Todo extends Command {
             if ($stmt->execute()) {
                 print_r("Task completed.\n");
             } else {
-                Cli::error("Failed to update task.");
+                $db->close();
+                return Cli::error("Failed to update task.");
             }
 
             $db->close();
@@ -145,11 +147,10 @@ class Todo extends Command {
 
         default:
             // Handle invalid flags
-            Cli::error("Invalid flag `" . $tokens[1] . "`");
-            return false;
+            return Cli::error("Invalid flag `" . $tokens[1] . "`");
         }
 
-        return true;
+        return Metadata::success();
     }
 }
 
