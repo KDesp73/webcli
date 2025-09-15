@@ -19,6 +19,11 @@ function anchor(string $url, string $name = null): string {
     return "<a tabindex=\"-1\" target=\"_blank\" href=\"" . $url . "\">" . $name . "</a>";
 }
 
+function img(string $src, string $alias = null): string {
+    $alias = $alias ?? "image";
+    return '<img class="image" src="' . htmlspecialchars($src, ENT_QUOTES) . '" alt="' . htmlspecialchars($alias, ENT_QUOTES) . '">';
+}
+
 function strpad($str, $size): string {
     return str_replace(" ", "&nbsp;", str_pad($str, $size));
 }

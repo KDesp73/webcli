@@ -12,8 +12,9 @@ require_once 'Tokens.php';
 require_once 'Cli.php';
 require_once 'Todo.php';
 require_once 'Exit.php';
+require_once 'Open.php';
 
-$cli= new Cli();
+$cli = new Cli();
 $cli->add(new Projects());
 $cli->add(new Contact());
 $cli->add(new About());
@@ -24,6 +25,7 @@ $cli->add(new Links());
 $cli->add(new Tokens());
 $cli->add(new Todo());
 $cli->add(new ExitC());
+$cli->add(new Open());
 $cli->add(new Command("clear", "Clear the terminal"));
 $cli->add(new Command("welcome", "Print the welcome message"));
 $cli->finish();
@@ -31,6 +33,19 @@ $cli->finish();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = $_POST['command'] ?? '';
 
+    ob_start();
     $cli->execute($input);
+    $stdout = ob_get_clean();
+
+    // Build the JSON object
+    $data = [
+        'stdout' => $stdout,
+        'status' => 'ok',
+        'command' => $input,
+        'timestamp' => time()
+    ];
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
 }
 ?>

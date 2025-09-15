@@ -2,7 +2,7 @@ services:
   php-server:
     image: php:8.2-apache
     ports:
-      - "8000:80"
+      - "7000:80"
     volumes:
       - ./src/public:/var/www/html
       - ./src/php:/var/www/html/php

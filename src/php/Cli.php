@@ -132,5 +132,10 @@ class Cli {
     {
         echo "<p class=\"error\">" . $msg . "</p>";
     }
+
+    public static function note(string $msg): void
+    {
+        echo "<p class=\"note\">" . $msg . "</p>";
+    }
 }
 ?>
