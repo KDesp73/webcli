@@ -2,3 +2,5 @@ TODO: better way to handle commands output
 TODO: themes
 TODO: about
 TODO: todo command read from TODO file
+TODO: music command (spotify api)
+TODO: client agnostic backend
