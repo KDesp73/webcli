@@ -7,6 +7,11 @@
 * {
     --bg: black;
     --fg: white;
+    --error: red;
+    --note: cyan;
+    --link: violet;
+    --prompt: green;
+
     --font: "IBM-Mono";
     --font-size: 14px;
 }
@@ -40,7 +45,7 @@ body {
 }
 
 #prompt {
-    color: green;
+    color: var(--prompt);
 }
 
 #command-form {
@@ -49,15 +54,15 @@ body {
 }
 
 .output a {
-    color: violet;
+    color: var(--link);
 }
 
 .error {
-    color: red;
+    color: var(--error);
 }
 
 .note {
-    color: cyan;
+    color: var(--note);
 }
 
 .image {

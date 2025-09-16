@@ -23,7 +23,7 @@ class Project {
 
     private function printInBox(string $str, int $width): string
     {
-        return "│ " . strpad($str, $width) . " │<br>";
+        return "│ " . strpad($str, $width-2) . " │<br>";
     }
     public function view(): string
     {
