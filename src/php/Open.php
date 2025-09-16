@@ -34,7 +34,14 @@ class Open extends Command {
         $this->appendFlag(new Flag("help", FlagType::Short));
         $this->appendFlag(new Flag("help", FlagType::Long));
         $this->appendFlag(new Flag("name", FlagType::Long, true));
+        $this->appendFlag(new Flag("list", FlagType::Short));
+        $this->appendFlag(new Flag("list", FlagType::Long));
 
+        $this->loadResources();
+    }
+
+    private function loadResources()
+    {
         $jsonFile = __DIR__ . '/resources.json';
         if (file_exists($jsonFile)) {
             $resources = json_decode(file_get_contents($jsonFile), true);
@@ -107,6 +114,11 @@ class Open extends Command {
                     return Metadata::success($resource->content);
                 default:
                     return Cli::error("Unhandled resource type");
+                }
+                break;
+            case "list":
+                foreach($this->resources as $name => $resource) {
+                    println("- " . anchor($resource->content, $resource->name));
                 }
                 break;
             }
