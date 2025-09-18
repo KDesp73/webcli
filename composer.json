@@ -1,0 +1,12 @@
+{
+    "name": "kdesp73/webcli",
+    "description": "Portfolio terminal emulator",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/backend/"
+        }
+    }
+}
+

@@ -1,7 +1,11 @@
 <?php
 
 
-require_once 'Command.php';
+
+namespace app\commands;
+
+use app\core\Command;
+use app\core\Metadata;
 
 class Help extends Command {
     public array $commands;
@@ -12,6 +16,14 @@ class Help extends Command {
     public function __construct()
     {
         parent::__construct("help", "Prints this message");
+    }
+
+    /**
+     * @param array<int,mixed> $commands
+     */
+    public function setCommands(array $commands): void
+    {
+        $this->commands = $commands;
     }
 
     public function run(array $tokens): Metadata

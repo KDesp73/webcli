@@ -1,9 +1,15 @@
 <?php
 
-require_once 'Command.php';
-require_once 'Metadata.php';
-require_once 'Flag.php';
-require_once 'helpers.php';
+
+namespace app\commands;
+
+use app\core\Command;
+use app\core\Flag;
+use app\core\FlagType;
+use app\core\Metadata;
+use app\core\Cli;
+use app\core\Helpers;
+use Error;
 
 class Project {
     public string $name;
@@ -11,7 +17,13 @@ class Project {
     public string $license;
     public string $url;
     public string $description;
-
+    /**
+     * @param mixed $name
+     * @param mixed $language
+     * @param mixed $license
+     * @param mixed $url
+     * @param mixed $description
+     */
     public function __construct($name, $language, $license, $url, $description)
     {
         $this->name = $name;
@@ -23,18 +35,18 @@ class Project {
 
     private function printInBox(string $str, int $width): string
     {
-        return "│ " . strpad($str, $width-2) . " │<br>";
+        return "│ " . Helpers::strpad($str, $width-2) . " │<br>";
     }
     public function view(): string
     {
         $width = 50;
-        $output = "&nbsp;&nbsp;" . anchor($this->url, $this->name) . "<br>";
+        $output = "&nbsp;&nbsp;" . Helpers::anchor($this->url, $this->name) . "<br>";
         $output .= "╭" . str_repeat("─", $width) . "╮<br>";
         $output .= $this->printInBox("- Language: " . $this->language, $width); 
         $output .= $this->printInBox("- License: " . $this->license, $width); 
         $output .= $this->printInBox("", $width); 
 
-        $descLines = wrapLines($this->description, $width-2);
+        $descLines = Helpers::wrapLines($this->description, $width-2);
         foreach($descLines as $line) {
             $output .= $this->printInBox($line, $width);
         }
@@ -63,7 +75,13 @@ class Projects extends Command {
 
     private function loadProjects(): void
     {
-        $jsonData = file_get_contents('./projects.json');
+        $filePath = dirname(__DIR__, 2) . '/data/projects.json';
+
+        if (!file_exists($filePath)) {
+            throw new \RuntimeException("Projects data file not found at: {$filePath}");
+        }
+
+        $jsonData = file_get_contents($filePath);
         $data = json_decode($jsonData, true);
         
         if ($data && isset($data['projects'])) {
@@ -79,10 +97,13 @@ class Projects extends Command {
             }
             sort($this->projects);
         } else {
-            echo "Error loading projects data.\n";
+            throw new Error("Error loading projects data.");
         }
     }
 
+    /**
+     * @param array<int,mixed> $projects
+     */
     private function view(array $projects): void
     {
         foreach ($projects as $project) {

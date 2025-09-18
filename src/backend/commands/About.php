@@ -1,6 +1,12 @@
 <?php 
-require_once 'Command.php';
-require_once 'Metadata.php';
+
+
+namespace app\commands;
+use app\core\Command;
+use app\core\Flag;
+use app\core\FlagType;
+use app\core\Metadata;
+use app\core\Cli;
 
 class About extends Command {
     public function __construct()

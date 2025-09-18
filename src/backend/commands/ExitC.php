@@ -1,9 +1,10 @@
 <?php
+namespace app\commands;
 
-require_once 'Flag.php';
-require_once 'Command.php';
-require_once 'Metadata.php';
-require_once 'helpers.php';
+use app\core\Command;
+use app\core\Flag;
+use app\core\FlagType;
+use app\core\Metadata;
 
 class ExitC extends Command {
     public function __construct()

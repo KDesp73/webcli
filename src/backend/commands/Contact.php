@@ -1,9 +1,15 @@
 <?php
 
-require_once 'Flag.php';
-require_once 'Command.php';
-require_once 'Metadata.php';
-require_once 'helpers.php';
+
+
+namespace app\commands;
+
+use app\core\Command;
+use app\core\Flag;
+use app\core\FlagType;
+use app\core\Helpers;
+use app\core\Metadata;
+use app\core\Cli;
 
 class Contact extends Command {
     public function __construct()
@@ -16,14 +22,17 @@ class Contact extends Command {
         $this->appendFlag(new Flag("help", FlagType::Long));
     }
 
+    /**
+     * @param mixed $config
+     */
     private function defaultResponse($config): string 
     {
         $output = "Reach me at<br>";
         if($config['email']){
-            $output .= "- Email: " . mailto($config['email']) . "<br>";
+            $output .= "- Email: " . Helpers::mailto($config['email']) . "<br>";
         }
         if($config['github']) {
-            $output .= "- Github: " . anchor($config['github']) . "<br>";
+            $output .= "- Github: " . Helpers::anchor($config['github']) . "<br>";
         }
 
         return $output;
@@ -31,10 +40,10 @@ class Contact extends Command {
 
     public function run(array $tokens): Metadata
     {
-        $config = parseJson("../config.json");
+        $filePath = dirname(__DIR__, 2) . '/config.json';
+        $config = Helpers::parseJson($filePath);
         if(!$config) {
-            Cli::error("Could not parse config.json");
-            return false;
+            return Cli::error("Could not parse config.json");
         }
 
         
@@ -50,13 +59,13 @@ class Contact extends Command {
 
             switch($flag->name){
             case "email":
-                echo mailto($link);
+                echo Helpers::mailto($link);
                 break;
             case "help":
                 echo $this->help();
                 break;
             case "github":
-                echo anchor($link);
+                echo Helpers::anchor($link);
                 break;
             }
         }

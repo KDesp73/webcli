@@ -1,9 +1,12 @@
 <?php 
-require_once 'Command.php';
-require_once 'Metadata.php';
-require_once 'Flag.php';
-require_once 'helpers.php';
-require_once 'ansi.php';
+namespace app\commands;
+
+use app\core\Command;
+use app\core\Flag;
+use app\core\FlagType;
+use app\core\Metadata;
+use app\core\Cli;
+use app\core\Helpers;
 
 class Skills extends Command {
     private array $skills;
@@ -15,7 +18,11 @@ class Skills extends Command {
         $this->appendFlag(new Flag("help", FlagType::Long));
         $this->appendFlag(new Flag("json", FlagType::Long));
 
-        $jsonData = file_get_contents('./skills.json');
+        $filePath = dirname(__DIR__, 2) . '/data/skills.json';
+        if (!file_exists($filePath)) {
+            throw new \RuntimeException("Projects data file not found at: {$filePath}");
+        }
+        $jsonData = file_get_contents($filePath);
         $this->skills = json_decode($jsonData, true);
     }
 
@@ -25,7 +32,7 @@ class Skills extends Command {
 
         $output = "";
         foreach($this->skills as $name => $percentage) {
-            $output .= "- " . str_replace(" ", "&nbsp;", str_pad($name, $maxLength + $gap)) . progressBar($percentage, 100) . "<br>";
+            $output .= "- " . str_replace(" ", "&nbsp;", str_pad($name, $maxLength + $gap)) . Helpers::progressBar($percentage, 100) . "<br>";
         }
         echo $output;
     }

@@ -67,7 +67,7 @@ form.addEventListener('submit', async (e) => {
 
   if(!executeCommand(command)){
     try {
-      const response = await fetch('/php/commands.php', {
+      const response = await fetch('http://localhost:8001/cli.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `command=${encodeURIComponent(command)}`

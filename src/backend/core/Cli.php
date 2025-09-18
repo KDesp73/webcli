@@ -1,7 +1,5 @@
 <?php 
-
-require_once 'Command.php';
-require_once 'Metadata.php';
+namespace app\core;
 
 error_reporting(E_ALL & ~E_WARNING);
 class Cli {
@@ -21,10 +19,9 @@ class Cli {
     }
 
     public function finish(): void {
-        $command = new Help();
-        $this->help = $command;
-        $this->help->commands = $this->commands;
-        $this->commands[$command->name] = $command;
+        $this->help = new \app\commands\Help();
+        $this->help->setCommands($this->commands);
+        $this->commands[$this->help->name] = $this->help;
         return;
     }
 
@@ -40,7 +37,7 @@ class Cli {
         return $c;
     }
     /**
-     * @return void
+     * @return array 
      */
     private function tokenize(string $input): array
     {
@@ -110,15 +107,15 @@ class Cli {
 
     public function execute(string $input): Metadata
     {
-        if($input == null || strlen($input) == 0) return null;
+        if($input == null || strlen($input) == 0) return Metadata::failure("No input provided");
         $tokens = $this->tokenize($input);
-        if(sizeof($tokens) == 0) return false;
+        if(sizeof($tokens) == 0) return Metadata::failure("Tokenizer failed");
         $command = $this->get($tokens[0]);
 
         if($command != null) {
             return $command->run($tokens);
         } else {
-            if(empty($tokens[0])) return false;
+            if(empty($tokens[0])) return Metadata::failure(message: "No first token found");
             switch ($tokens[0]) {
             case 'help':
                 return $this->help->run($tokens);

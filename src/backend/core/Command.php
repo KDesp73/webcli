@@ -1,7 +1,5 @@
 <?php
-
-require_once 'Flag.php';
-require_once 'Metadata.php';
+namespace app\core;
 
 class Command {
     public string $name; 
@@ -28,9 +26,9 @@ class Command {
     }
 
     protected function help(): string {
-        $output = bold("USAGE") . "<br>";
+        $output = Helpers::bold("USAGE") . "<br>";
         $output .= "&nbsp;&nbsp;" . $this->name . " [OPTIONS]<br><br>";
-        $output .= bold("OPTIONS") . "<br>";
+        $output .= Helpers::bold("OPTIONS") . "<br>";
         foreach($this->flags as $name => $f) {
             if($f->acceptsValue)
                 $output .= "&nbsp;&nbsp;" . $name . " &lt;VALUE&gt;<br>";

@@ -1,9 +1,14 @@
 <?php
 
-require_once 'Flag.php';
-require_once 'Command.php';
-require_once 'Metadata.php';
-require_once 'helpers.php';
+
+namespace app\commands;
+
+use app\core\Command;
+use app\core\Flag;
+use app\core\FlagType;
+use app\core\Helpers;
+use app\core\Metadata;
+use app\core\Cli;
 
 enum ResourceType
 {
@@ -42,7 +47,7 @@ class Open extends Command {
 
     private function loadResources()
     {
-        $jsonFile = __DIR__ . '/resources.json';
+        $jsonFile = dirname(__DIR__, 2) . '/data/resources.json';
         if (file_exists($jsonFile)) {
             $resources = json_decode(file_get_contents($jsonFile), true);
             if (is_array($resources)) {
@@ -88,10 +93,10 @@ class Open extends Command {
             case "help":
                 echo $this->help();
 
-                println("");
-                println(bold("NAMES"));
+                Helpers::println("");
+                Helpers::println(Helpers::bold("NAMES"));
                 foreach($this->resources as $name => $resource) {
-                    println(strpad("  " . $name, 2));
+                    Helpers::println(Helpers::strpad("  " . $name, 2));
                 }
                 break;
 
@@ -107,7 +112,7 @@ class Open extends Command {
                 }
                 switch($resource->type) {
                 case ResourceType::Image:
-                    println(img($resource->content, $resource->name));
+                    Helpers::println(Helpers::img($resource->content, $resource->name));
                     return Metadata::success();
                 case ResourceType::Link:
                 case ResourceType::File:
@@ -118,7 +123,7 @@ class Open extends Command {
                 break;
             case "list":
                 foreach($this->resources as $name => $resource) {
-                    println("- " . anchor($resource->content, $resource->name));
+                    Helpers::println("- " . Helpers::anchor($resource->content, $resource->name));
                 }
                 break;
             }

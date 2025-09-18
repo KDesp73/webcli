@@ -1,8 +1,8 @@
 <?php 
+namespace app\commands;
 
-require_once 'Command.php';
-require_once 'Metadata.php';
-
+use app\core\Command;
+use app\core\Metadata;
 
 class Ping extends Command {
     public function __construct()

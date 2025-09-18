@@ -1,17 +1,11 @@
 <?php
-require_once 'helpers.php';
-require_once 'Help.php';
-require_once 'Contact.php';
-require_once 'About.php';
-require_once 'Skills.php';
-require_once 'Ping.php';
-require_once 'Amogus.php';
-require_once 'Projects.php';
-require_once 'Tokens.php';
-require_once 'Cli.php';
-require_once 'Todo.php';
-require_once 'Exit.php';
-require_once 'Open.php';
+namespace app\api;
+
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+
+use app\core\Cli;
+use app\core\Command;
+use app\commands\{About, Contact, Skills, Ping, ExitC, Open, Amogus, Tokens, Todo, Projects};
 
 $cli = new Cli();
 
@@ -21,7 +15,7 @@ $cli->add(new Contact());
 $cli->add(new About());
 $cli->add(new Skills());
 $cli->add(new Ping());
-// $cli->add(new Todo()); // NOTE: disabled until new implementation
+$cli->add(new Todo()); // NOTE: disabled until new implementation
 $cli->add(new ExitC());
 $cli->add(new Open());
 

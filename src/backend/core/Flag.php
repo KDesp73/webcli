@@ -1,11 +1,5 @@
 <?php
-
-enum FlagType
-{
-    case Long;
-    case Short;
-    case None;
-}
+namespace app\core;
 
 class Flag {
     private string $name;

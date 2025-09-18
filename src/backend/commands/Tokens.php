@@ -1,7 +1,9 @@
 <?php 
+namespace app\commands;
 
-require_once 'Command.php';
-require_once 'Metadata.php';
+use app\core\Command;
+use app\core\Metadata;
+
 
 class Tokens extends Command {
     public function __construct()

@@ -1,4 +1,5 @@
 <?php
+namespace app\core;
 
 class Metadata {
     public string $link;
@@ -20,7 +21,9 @@ class Metadata {
     public static function failure(string $message, int $exit_code = 1, string $link = ''): Metadata {
         return new Metadata($link, 'failure', $message, $exit_code);
     }
-
+    /**
+     * @return array<string,mixed>
+     */
     public function toArray(): array {
         return [
             'link' => $this->link,
@@ -31,4 +34,6 @@ class Metadata {
     }
 }
 
+// TODO: rename to Context
 ?>
+

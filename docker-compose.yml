@@ -1,9 +1,11 @@
 services:
   php-server:
-    image: php:8.2-apache
+    build: .
     ports:
-      - "8000:80"
+      - "8000:8000"
     volumes:
-      - ./src/public:/var/www/html
-      - ./src/php:/var/www/html/php
-      - ./src/config.json:/var/www/html/config.json
+      - ./src:/var/www/html/src
+      - ./vendor:/var/www/html/vendor
+      - ./router.php:/var/www/html/router.php
+      - ./composer.json:/var/www/html/composer.json
+      - ./composer.lock:/var/www/html/composer.lock
