@@ -12,7 +12,7 @@ WORKDIR /var/www/html
 
 # Copy source code
 COPY src ./src
-COPY composer.json ./
+COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader
 
 # Copy router
